@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+ Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="2.0.0-beta" use-changelog="false" max-obj-count="25"
+	 gen-disabled-objs-code="false" show-sys-schemas-rects="false"
+	 last-position="0,0" last-zoom="0.5" scene-rect="-20,0,2135.59,1727.92"
+	 default-schema="public" default-owner="postgres"
+	 layers="Default layer"
+	 active-layers="0"
+	 layer-name-colors="#000000"
+	 layer-rect-colors="#ce266e"
+	 show-layer-names="false" show-layer-rects="false">
+<database name="locadora" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" layers="0" fill-color="#e1e1e1" name-color="#000000" sql-disabled="true">
+</schema>
+
+<table name="cidade" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="40" y="40"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="nome" not-null="true">
+		<type name="varchar" length="60"/>
+	</column>
+	<column name="estado" not-null="true">
+		<type name="char" length="2"/>
+	</column>
+	<constraint name="cidade_pkey" type="pk-constr" table="public.cidade">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="cliente" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="420" y="620"/>
+	<column name="pessoa_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="data_liberacao_colecionador">
+		<type name="date" length="0"/>
+	</column>
+	<constraint name="cliente_pkey" type="pk-constr" table="public.cliente">
+		<columns names="pessoa_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="cor" layers="0" collapse-mode="2" max-obj-count="7" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1740" y="1160"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="nome" not-null="true">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="codigo_hex" not-null="true">
+		<type name="char" length="7"/>
+	</column>
+	<column name="tipo" not-null="true">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="acabamento" not-null="true">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="caracteristicas_pintura">
+		<type name="varchar" length="200"/>
+	</column>
+	<constraint name="cor_pkey" type="pk-constr" table="public.cor">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="fabricante" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="40" y="1340"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="nome" not-null="true">
+		<type name="varchar" length="40"/>
+	</column>
+	<column name="ano_fundacao" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="pais_origem" not-null="true">
+		<type name="varchar" length="40"/>
+	</column>
+	<constraint name="fabricante_pkey" type="pk-constr" table="public.fabricante">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="funcionario" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1100" y="20"/>
+	<column name="pessoa_fisica_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="matricula" not-null="true">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="data_admissao" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="salario_base" not-null="true">
+		<type name="numeric" length="9" precision="2"/>
+	</column>
+	<column name="locadora_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="funcionario_matricula_key" type="uq-constr" table="public.funcionario">
+		<columns names="matricula" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="funcionario_pkey" type="pk-constr" table="public.funcionario">
+		<columns names="pessoa_fisica_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="gerente" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1760" y="580"/>
+	<column name="funcionario_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="setor_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="gerente_pkey" type="pk-constr" table="public.gerente">
+		<columns names="funcionario_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="locacao" layers="0" collapse-mode="2" max-obj-count="13" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1220" y="820"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="cliente_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="veiculo_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="locadora_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="vendedor_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="data_retirada" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="data_prevista_devolucao" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="data_devolucao">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="km_inicial" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="km_final">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="valor_total">
+		<type name="numeric" length="9" precision="2"/>
+	</column>
+	<constraint name="locacao_pkey" type="pk-constr" table="public.locacao">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="locadora" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1120" y="360"/>
+	<column name="pessoa_juridica_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="locadora_pkey" type="pk-constr" table="public.locadora">
+		<columns names="pessoa_juridica_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="modelo" layers="0" collapse-mode="2" max-obj-count="15" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="20" y="900"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="nome" not-null="true">
+		<type name="varchar" length="40"/>
+	</column>
+	<column name="potencia_cv" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="consumo_medio_km_l" not-null="true">
+		<type name="numeric" length="5" precision="2"/>
+	</column>
+	<column name="tipo_cambio" not-null="true">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="numero_marchas" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="capacidade_porta_malas_l" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="ano_lancamento" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="ano_final_producao">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="torque_kgfm" not-null="true">
+		<type name="numeric" length="5" precision="2"/>
+	</column>
+	<column name="velocidade_maxima_kmh" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="aceleracao_0_100_s" not-null="true">
+		<type name="numeric" length="4" precision="1"/>
+	</column>
+	<column name="fabricante_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="modelo_pkey" type="pk-constr" table="public.modelo">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="pessoa" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="560" y="280"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="nome" not-null="true">
+		<type name="varchar" length="60"/>
+	</column>
+	<column name="telefone" not-null="true">
+		<type name="varchar" length="16"/>
+	</column>
+	<column name="email">
+		<type name="varchar" length="60"/>
+	</column>
+	<column name="cidade_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="pessoa_pkey" type="pk-constr" table="public.pessoa">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="pessoa_fisica" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="460" y="20"/>
+	<column name="pessoa_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="cpf" not-null="true">
+		<type name="varchar" length="14"/>
+	</column>
+	<column name="rg" not-null="true">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="pessoa_fisica_cpf_key" type="uq-constr" table="public.pessoa_fisica">
+		<columns names="cpf" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="pessoa_fisica_pkey" type="pk-constr" table="public.pessoa_fisica">
+		<columns names="pessoa_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="pessoa_juridica" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="820" y="620"/>
+	<column name="pessoa_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="cnpj" not-null="true">
+		<type name="varchar" length="18"/>
+	</column>
+	<column name="razao_social" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="nome_fantasia" not-null="true">
+		<type name="varchar" length="60"/>
+	</column>
+	<constraint name="pessoa_juridica_cnpj_key" type="uq-constr" table="public.pessoa_juridica">
+		<columns names="cnpj" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="pessoa_juridica_pkey" type="pk-constr" table="public.pessoa_juridica">
+		<columns names="pessoa_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="proprietario" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="0" y="500"/>
+	<column name="pessoa_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="proprietario_desde" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="numero_ultimo_contrato" not-null="true">
+		<type name="varchar" length="30"/>
+	</column>
+	<constraint name="proprietario_pkey" type="pk-constr" table="public.proprietario">
+		<columns names="pessoa_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="setor" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1740" y="920"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="nome" not-null="true">
+		<type name="varchar" length="40"/>
+	</column>
+	<column name="locadora_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="setor_pkey" type="pk-constr" table="public.setor">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tipo_propulsao" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1300" y="1300"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="nome" not-null="true">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="descricao" not-null="true">
+		<type name="varchar" length="200"/>
+	</column>
+	<column name="usa_tanque" not-null="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="usa_bateria" not-null="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<constraint name="tipo_propulsao_pkey" type="pk-constr" table="public.tipo_propulsao">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="veiculo" layers="0" collapse-mode="2" max-obj-count="14" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="620" y="1060"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="placa" not-null="true">
+		<type name="varchar" length="8"/>
+	</column>
+	<column name="chassi" not-null="true">
+		<type name="varchar" length="17"/>
+	</column>
+	<column name="preco_venda" not-null="true">
+		<type name="numeric" length="10" precision="2"/>
+	</column>
+	<column name="ano_fabricacao" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="quilometragem_atual" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="condicao" not-null="true">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="valor_diaria" not-null="true">
+		<type name="numeric" length="9" precision="2"/>
+	</column>
+	<column name="proprietario_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="modelo_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="cor_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="tipo_propulsao_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="veiculo_chassi_key" type="uq-constr" table="public.veiculo">
+		<columns names="chassi" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="veiculo_pkey" type="pk-constr" table="public.veiculo">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="veiculo_placa_key" type="uq-constr" table="public.veiculo">
+		<columns names="placa" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="vendedor" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1720" y="40"/>
+	<column name="funcionario_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="percentual_comissao" not-null="true">
+		<type name="numeric" length="5" precision="2"/>
+	</column>
+	<constraint name="vendedor_pkey" type="pk-constr" table="public.vendedor">
+		<columns names="funcionario_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<constraint name="cliente_pessoa_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.pessoa" table="public.cliente">
+	<columns names="pessoa_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="funcionario_locadora_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.locadora" table="public.funcionario">
+	<columns names="locadora_id" ref-type="src-columns"/>
+	<columns names="pessoa_juridica_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="funcionario_pessoa_fisica_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.pessoa_fisica" table="public.funcionario">
+	<columns names="pessoa_fisica_id" ref-type="src-columns"/>
+	<columns names="pessoa_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="gerente_funcionario_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.funcionario" table="public.gerente">
+	<columns names="funcionario_id" ref-type="src-columns"/>
+	<columns names="pessoa_fisica_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="gerente_setor_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.setor" table="public.gerente">
+	<columns names="setor_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="locacao_cliente_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.cliente" table="public.locacao">
+	<columns names="cliente_id" ref-type="src-columns"/>
+	<columns names="pessoa_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="locacao_locadora_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.locadora" table="public.locacao">
+	<columns names="locadora_id" ref-type="src-columns"/>
+	<columns names="pessoa_juridica_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="locacao_veiculo_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.veiculo" table="public.locacao">
+	<columns names="veiculo_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="locacao_vendedor_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.vendedor" table="public.locacao">
+	<columns names="vendedor_id" ref-type="src-columns"/>
+	<columns names="funcionario_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="locadora_pessoa_juridica_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.pessoa_juridica" table="public.locadora">
+	<columns names="pessoa_juridica_id" ref-type="src-columns"/>
+	<columns names="pessoa_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="modelo_fabricante_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.fabricante" table="public.modelo">
+	<columns names="fabricante_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="pessoa_cidade_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.cidade" table="public.pessoa">
+	<columns names="cidade_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="pessoa_fisica_pessoa_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.pessoa" table="public.pessoa_fisica">
+	<columns names="pessoa_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="pessoa_juridica_pessoa_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.pessoa" table="public.pessoa_juridica">
+	<columns names="pessoa_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="proprietario_pessoa_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.pessoa" table="public.proprietario">
+	<columns names="pessoa_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="setor_locadora_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.locadora" table="public.setor">
+	<columns names="locadora_id" ref-type="src-columns"/>
+	<columns names="pessoa_juridica_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="veiculo_cor_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.cor" table="public.veiculo">
+	<columns names="cor_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="veiculo_modelo_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.modelo" table="public.veiculo">
+	<columns names="modelo_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="veiculo_proprietario_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.proprietario" table="public.veiculo">
+	<columns names="proprietario_id" ref-type="src-columns"/>
+	<columns names="pessoa_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="veiculo_tipo_propulsao_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tipo_propulsao" table="public.veiculo">
+	<columns names="tipo_propulsao_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="vendedor_funcionario_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.funcionario" table="public.vendedor">
+	<columns names="funcionario_id" ref-type="src-columns"/>
+	<columns names="pessoa_fisica_id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_cliente_pessoa_id_fkey" type="relfk" layers="0"
+	 src-table="public.cliente"
+	 dst-table="public.pessoa" reference-fk="cliente_pessoa_id_fkey"
+	 src-required="false" dst-required="false">
+	<label ref-type="src-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<relationship name="rel_funcionario_locadora_id_fkey" type="relfk" layers="0"
+	 src-table="public.funcionario"
+	 dst-table="public.locadora" reference-fk="funcionario_locadora_id_fkey"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_funcionario_pessoa_fisica_id_fkey" type="relfk" layers="0"
+	 src-table="public.funcionario"
+	 dst-table="public.pessoa_fisica" reference-fk="funcionario_pessoa_fisica_id_fkey"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_gerente_funcionario_id_fkey" type="relfk" layers="0"
+	 src-table="public.gerente"
+	 dst-table="public.funcionario" reference-fk="gerente_funcionario_id_fkey"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_gerente_setor_id_fkey" type="relfk" layers="0"
+	 src-table="public.gerente"
+	 dst-table="public.setor" reference-fk="gerente_setor_id_fkey"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_locacao_cliente_id_fkey" type="relfk" layers="0"
+	 src-table="public.locacao"
+	 dst-table="public.cliente" reference-fk="locacao_cliente_id_fkey"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_locacao_locadora_id_fkey" type="relfk" layers="0"
+	 src-table="public.locacao"
+	 dst-table="public.locadora" reference-fk="locacao_locadora_id_fkey"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_locacao_veiculo_id_fkey" type="relfk" layers="0"
+	 src-table="public.locacao"
+	 dst-table="public.veiculo" reference-fk="locacao_veiculo_id_fkey"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_locacao_vendedor_id_fkey" type="relfk" layers="0"
+	 src-table="public.locacao"
+	 dst-table="public.vendedor" reference-fk="locacao_vendedor_id_fkey"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_locadora_pessoa_juridica_id_fkey" type="relfk" layers="0"
+	 src-table="public.locadora"
+	 dst-table="public.pessoa_juridica" reference-fk="locadora_pessoa_juridica_id_fkey"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_modelo_fabricante_id_fkey" type="relfk" layers="0"
+	 src-table="public.modelo"
+	 dst-table="public.fabricante" reference-fk="modelo_fabricante_id_fkey"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_pessoa_cidade_id_fkey" type="relfk" layers="0"
+	 src-table="public.pessoa"
+	 dst-table="public.cidade" reference-fk="pessoa_cidade_id_fkey"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_pessoa_fisica_pessoa_id_fkey" type="relfk" layers="0"
+	 src-table="public.pessoa_fisica"
+	 dst-table="public.pessoa" reference-fk="pessoa_fisica_pessoa_id_fkey"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_pessoa_juridica_pessoa_id_fkey" type="relfk" layers="0"
+	 src-table="public.pessoa_juridica"
+	 dst-table="public.pessoa" reference-fk="pessoa_juridica_pessoa_id_fkey"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-2.04215" y="-5.15299"/>
+	</label>
+</relationship>
+
+<relationship name="rel_proprietario_pessoa_id_fkey" type="relfk" layers="0"
+	 src-table="public.proprietario"
+	 dst-table="public.pessoa" reference-fk="proprietario_pessoa_id_fkey"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_setor_locadora_id_fkey" type="relfk" layers="0"
+	 src-table="public.setor"
+	 dst-table="public.locadora" reference-fk="setor_locadora_id_fkey"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_veiculo_cor_id_fkey" type="relfk" layers="0"
+	 src-table="public.veiculo"
+	 dst-table="public.cor" reference-fk="veiculo_cor_id_fkey"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_veiculo_modelo_id_fkey" type="relfk" layers="0"
+	 src-table="public.veiculo"
+	 dst-table="public.modelo" reference-fk="veiculo_modelo_id_fkey"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_veiculo_proprietario_id_fkey" type="relfk" layers="0"
+	 src-table="public.veiculo"
+	 dst-table="public.proprietario" reference-fk="veiculo_proprietario_id_fkey"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<relationship name="rel_veiculo_tipo_propulsao_id_fkey" type="relfk" layers="0"
+	 src-table="public.veiculo"
+	 dst-table="public.tipo_propulsao" reference-fk="veiculo_tipo_propulsao_id_fkey"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_vendedor_funcionario_id_fkey" type="relfk" layers="0"
+	 src-table="public.vendedor"
+	 dst-table="public.funcionario" reference-fk="vendedor_funcionario_id_fkey"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>
