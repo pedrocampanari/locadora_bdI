@@ -35,7 +35,7 @@ O `seeders.sql` deve ser executado depois do `locadora.sql`, pois este recria as
 - **Pessoa** guarda os dados comuns a indivíduos e organizações: nome, telefone, e-mail e cidade.
 - **Pessoa Física** (CPF, RG) e **Pessoa Jurídica** (CNPJ, razão social, nome fantasia) são especializações de Pessoa.
 - **Locadora** é uma especialização de Pessoa Jurídica.
-- **Proprietário** (desde quando, número do último contrato) e **Cliente** (data de liberação para carros de colecionador) são papéis de Pessoa. Uma mesma pessoa, física ou jurídica, pode ter os dois papéis sem repetir seus dados.
+- **Proprietário** (desde quando, número do último contrato) e **Cliente** (data de liberação para carros de colecionador) são especializações de Pessoa que representam papéis. Uma mesma pessoa, física ou jurídica, pode ter os dois papéis sem repetir seus dados.
 - **Funcionário** (matrícula, data de admissão, salário base) é uma especialização de Pessoa Física e trabalha para uma única Locadora.
 - **Vendedor** (percentual de comissão) e **Gerente** são especializações de Funcionário. Cada gerente administra um único **Setor**, e um setor pode ter vários gerentes.
 
@@ -47,13 +47,15 @@ O `seeders.sql` deve ser executado depois do `locadora.sql`, pois este recria as
 
 ### Locações
 
-**Locação** resolve o relacionamento N para N entre Cliente e Veículo. Cada locação registra o cliente, o veículo, a locadora e o vendedor responsável, as datas de retirada, de devolução prevista e de devolução efetiva, a quilometragem inicial e final e o valor total cobrado.
+**Locação** é a entidade que registra cada aluguel e resolve o relacionamento N para N entre Cliente e Veículo. Cada locação registra o cliente, o veículo, a locadora e o vendedor responsável, as datas de retirada, de devolução prevista e de devolução efetiva, a quilometragem inicial e final e o valor total cobrado.
 
 ## Decisões de modelagem
 
+### Gerais
+
 - **Cidade é uma entidade** (nome e estado), referenciada por Pessoa, porque uma cidade está associada a muitas pessoas e organizações.
 - **Proprietário e Cliente referenciam Pessoa**, e não Pessoa Física ou Jurídica, porque tanto indivíduos quanto organizações podem possuir veículos e realizar locações.
-- **Funcionário referencia Pessoa Física**, porque somente indivíduos têm matrícula, CPF e RG.
+- **Funcionário referencia Pessoa Física**, porque somente indivíduos trabalham como funcionários e a narrativa exige CPF e RG de todos eles.
 - **O nome fica em Pessoa** porque a narrativa exige nome para todos os clientes. Para organizações, ele funciona como nome de exibição.
 - **O valor da diária fica em Veículo**, sem histórico, como pede a narrativa. O **valor total fica em Locação**, preenchido ao final da operação.
 - **Setor pertence a uma Locadora**, já que a narrativa fala em "setores das locadoras".
@@ -69,7 +71,7 @@ O `seeders.sql` deve ser executado depois do `locadora.sql`, pois este recria as
 
 ### Regras de negócio garantidas pelo sistema
 
-Algumas regras da narrativa não são garantidas pela estrutura das tabelas, só com recursos fora do conteúdo visto em aula (restrições `CHECK` e triggers). Elas ficam a cargo do sistema que usa o banco:
+Algumas regras da narrativa não são garantidas pela estrutura das tabelas. Garanti-las no banco exigiria recursos que não foram vistos em aula (restrições `CHECK` e triggers), então elas ficam a cargo do sistema que usa o banco:
 
 - Uma pessoa pode ser cliente e vendedora, mas não na mesma locação (`cliente_id` diferente de `vendedor_id`).
 - Somente clientes com `data_liberacao_colecionador` preenchida podem alugar veículos na condição "de Colecionador".
