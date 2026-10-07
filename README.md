@@ -60,6 +60,20 @@ O `seeders.sql` deve ser executado depois do `locadora.sql`, pois este recria as
 - **Os campos preenchidos só na devolução** (data de devolução, km final e valor total) aceitam nulo, permitindo registrar locações em andamento.
 - **A condição do veículo** é um texto com os valores Excelente, Muito bom, Bom, Regular ou de Colecionador.
 
+### Locação
+
+- **Locação tem identificador próprio** (`id`), e não uma chave formada por cliente e veículo, porque o mesmo cliente pode alugar o mesmo veículo várias vezes e cada ocorrência deve ser registrada separadamente.
+- **Locação guarda a locadora (`locadora_id`)**, mesmo sendo possível descobri-la pelo vendedor, já que cada funcionário trabalha para uma única locadora. A coluna registra onde a operação aconteceu naquela data: se o vendedor mudar de locadora depois, o histórico das locações antigas continua correto. Em troca, cabe ao sistema garantir que o vendedor informado trabalha na locadora da locação.
+- **O proprietário não é repetido na Locação.** Ele é obtido pelo veículo, conforme a narrativa: é necessário saber o proprietário "sem precisar repetir os dados [...] a cada novo contrato de locação".
+
+### Regras de negócio garantidas pelo sistema
+
+Algumas regras da narrativa não são garantidas pela estrutura das tabelas, só com recursos fora do conteúdo visto em aula (restrições `CHECK` e triggers). Elas ficam a cargo do sistema que usa o banco:
+
+- Uma pessoa pode ser cliente e vendedora, mas não na mesma locação (`cliente_id` diferente de `vendedor_id`).
+- Somente clientes com `data_liberacao_colecionador` preenchida podem alugar veículos na condição "de Colecionador".
+- O vendedor de uma locação deve trabalhar na mesma locadora registrada na locação.
+
 ## Projeto relacional
 
 ![Projeto relacional](projeto_relacional.png)
