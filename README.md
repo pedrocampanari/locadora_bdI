@@ -62,6 +62,7 @@ O `seeders.sql` deve ser executado depois do `locadora.sql`, pois este recria as
 
 ### Locação
 
+- **Locação é uma entidade**, e não apenas um relacionamento entre Cliente e Veículo, porque é uma operação com informações próprias (datas, quilometragens e valor) que não pertencem só à pessoa nem só ao veículo, e porque se relaciona também com Locadora e Vendedor. O relacionamento N para N entre Cliente e Veículo é decomposto em dois relacionamentos 1 para N: Cliente **1** — aluga — **N** Locação e Veículo **1** — envolve — **N** Locação.
 - **Locação tem identificador próprio** (`id`), e não uma chave formada por cliente e veículo, porque o mesmo cliente pode alugar o mesmo veículo várias vezes e cada ocorrência deve ser registrada separadamente.
 - **Locação guarda a locadora (`locadora_id`)**, mesmo sendo possível descobri-la pelo vendedor, já que cada funcionário trabalha para uma única locadora. A coluna registra onde a operação aconteceu naquela data: se o vendedor mudar de locadora depois, o histórico das locações antigas continua correto. Em troca, cabe ao sistema garantir que o vendedor informado trabalha na locadora da locação.
 - **O proprietário não é repetido na Locação.** Ele é obtido pelo veículo, conforme a narrativa: é necessário saber o proprietário "sem precisar repetir os dados [...] a cada novo contrato de locação".
