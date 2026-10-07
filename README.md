@@ -1,6 +1,6 @@
 # Sistema de Administração de Locadoras de Veículos
 
-Exercício de Modelagem de Dados (Banco de Dados I): modelo conceitual (DER), projeto relacional e script SQL para uma rede de locadoras de veículos, a partir da narrativa em `00Locadora__Carros__ModelagemDados__Exercicio.pdf` e das dicas em `01Locadora__Carros__ModelagemDados__DicasComplementares.pdf`.
+Exercício de Modelagem de Dados (Banco de Dados I): modelo conceitual (DER), projeto relacional e script SQL para uma rede de locadoras de veículos, a partir da narrativa em `trabalho/00Locadora__Carros__ModelagemDados__Exercicio.pdf` e das dicas em `trabalho/01Locadora__Carros__ModelagemDados__DicasComplementares.pdf`.
 
 ## Arquivos
 
@@ -8,23 +8,24 @@ Exercício de Modelagem de Dados (Banco de Dados I): modelo conceitual (DER), pr
 |---|---|
 | `der_conceitual.png` | DER conceitual (entidades, relacionamentos, especializações e cardinalidades) |
 | `projeto_relacional.png` | Projeto relacional (tabelas, chaves primárias e estrangeiras) |
-| `locadora.dbm` | Modelo do projeto relacional para abrir no pgModeler |
-| `locadora.sql` | Script de criação das tabelas (`CREATE TABLE`) |
-| `seeders.sql` | Dados de exemplo (`INSERT`) |
-| `consultas.sql` | Consultas de exemplo (`SELECT`) |
+| `projeto_relacional.dbm` | Modelo do projeto relacional para abrir no pgModeler |
+| `locadora_tabelas.sql` | Script de criação das tabelas (`CREATE TABLE`) |
+| `locadora_seeders.sql` | Dados de exemplo (`INSERT`) |
+| `locadora_consultas.sql` | Consultas de exemplo (`SELECT`) |
+| `trabalho/` | Enunciado do exercício, dicas complementares e exemplo de DER da aula |
 
 ## Como executar
 
 Requer PostgreSQL com um banco chamado `locadora`:
 
 ```bash
-createdb -U postgres locadora              # apenas na primeira vez
-psql -U postgres -f locadora.sql           # cria as tabelas (apaga as existentes)
-psql -U postgres -f seeders.sql            # insere os dados de exemplo
-psql -U postgres -f consultas.sql          # executa as consultas
+createdb -U postgres locadora               # apenas na primeira vez
+psql -U postgres -f locadora_tabelas.sql    # cria as tabelas (apaga as existentes)
+psql -U postgres -f locadora_seeders.sql    # insere os dados de exemplo
+psql -U postgres -f locadora_consultas.sql  # executa as consultas
 ```
 
-O `seeders.sql` deve ser executado depois do `locadora.sql`, pois este recria as tabelas vazias.
+O `locadora_seeders.sql` deve ser executado depois do `locadora_tabelas.sql`, pois este recria as tabelas vazias.
 
 ## Modelo
 
@@ -81,4 +82,4 @@ Algumas regras da narrativa não são garantidas pela estrutura das tabelas. Gar
 
 ![Projeto relacional](projeto_relacional.png)
 
-Para editar o projeto relacional, abra o `locadora.dbm` no pgModeler (**File > Open**).
+Para editar o projeto relacional, abra o `projeto_relacional.dbm` no pgModeler (**File > Open**).
