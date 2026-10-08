@@ -32,7 +32,7 @@ CREATE TABLE Pessoa
     id serial NOT NULL PRIMARY KEY,
     nome varchar(60) NOT NULL,
     telefone varchar(16) NOT NULL,
-    email varchar(60) NULL,
+    email varchar(60) NOT NULL,
     cidade_id int NOT NULL REFERENCES Cidade(id)
 );
 

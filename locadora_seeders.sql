@@ -8,9 +8,9 @@ INSERT INTO Cidade (nome, estado)
 -- Inserindo algumas pessoas
 INSERT INTO Pessoa (id, nome, telefone, email, cidade_id)
    VALUES
-      (1, 'Pedro Campanari', '67 99999-0001', NULL, 1),
-      (2, 'Arthur Henrique', '67 99999-0002', NULL, 1),
-      (3, 'Humberto Lemos', '67 99999-0003', NULL, 1),
+      (1, 'Pedro Campanari', '67 99999-0001', 'pedro.campanari@estudante.ifms.edu.br', 1),
+      (2, 'Arthur Henrique', '67 99999-0002', 'arthur.silva16@estudante.ifms.edu.br', 1),
+      (3, 'Humberto Lemos', '67 99999-0003', 'humberto.lemos@estudante.ifms.edu.br', 1),
       (4, 'Locadora Alfa', '67 3333-0000', 'contato@alfa.com', 2);
 
 SELECT setval('pessoa_id_seq', 4);
