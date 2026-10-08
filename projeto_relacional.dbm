@@ -256,7 +256,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="telefone" not-null="true">
 		<type name="varchar" length="16"/>
 	</column>
-	<column name="email">
+	<column name="email" not-null="true">
 		<type name="varchar" length="60"/>
 	</column>
 	<column name="cidade_id" not-null="true">
